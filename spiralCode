@@ -1,0 +1,54 @@
+//winding spiral for e-textile swatch
+// http://etextile-summercamp.org/swatch-exchange/spriet/
+
+import processing.dxf.*;
+
+boolean record = true;
+
+int r = 100;
+int cx;
+int cy;
+float a = 0.02;
+void setup() {
+  size(500, 500, P3D);
+  cx = width / 2;
+  cy = height / 2;
+}
+
+void draw() {
+  if (record) {
+    beginRaw(DXF, "spiral5.dxf"); //output format dxf
+    //a few loops, for diminishing the number of circles in the spiral
+    for (int i = 550; i < 1000; i+=20) {
+      float t = radians(i);
+      float x = cx + a * t * r * cos(t);
+      float y = cy + a * t * r * sin(t);
+      //point(x, y);
+      ellipse(x, y, 3, 3);
+    }
+    for (int i = 1000; i < 3000; i+=10) {
+      float t = radians(i);
+      float x = cx + a * t * r * cos(t);
+      float y = cy + a * t * r * sin(t);
+      //point(x, y);
+      ellipse(x, y, 3, 3);
+    }
+     for (int i = 3000; i < 5500; i+=5) {
+      float t = radians(i);
+      float x = cx + a * t * r * cos(t);
+      float y = cy + a * t * r * sin(t);
+      //point(x, y);
+      ellipse(x, y, 3, 3);
+    }
+         for (int i = 5500; i < 10000; i+=3) {
+      float t = radians(i);
+      float x = cx + a * t * r * cos(t);
+      float y = cy + a * t * r * sin(t);
+      //point(x, y);
+      ellipse(x, y, 3, 3);
+    }
+    endRaw();
+    record = false;
+    println("ready");
+  }
+}
